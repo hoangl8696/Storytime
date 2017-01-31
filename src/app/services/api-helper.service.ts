@@ -48,10 +48,19 @@ export class ApiHelperService {
     return this.http.post(url, body, options);
   }
 
+  modifyUser: any = (data, token: any) => {
+    const url = this.baseUrl + 'users/';
+    const options = this.headerBuilder('', token);
+    const body = JSON.stringify(data);
+    console.log(body);
+    return this.http.put(url, body, options);
+  }
   getUser: any = (id: any, token: any) => {
     const url = this.baseUrl + 'users/' + id;
     const options = this.headerBuilder('', token);
     console.log(options);
     return this.http.get(url, options);
   }
+
+
 }
