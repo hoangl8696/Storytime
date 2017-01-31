@@ -26,7 +26,7 @@ export class ApiHelperService {
     return this.options;
   }
 
-  checkName: any = (username: any) =>  {
+  checkName: any = (username: any) => {
     const url = this.baseUrl + 'users/username/' + username;
     const options = this.headerBuilder();
     return this.http.get(url, options);
@@ -46,5 +46,12 @@ export class ApiHelperService {
     const body = JSON.stringify(data);
     console.log(body);
     return this.http.post(url, body, options);
+  }
+
+  getUser: any = (id: any, token: any) => {
+    const url = this.baseUrl + 'users/' + id;
+    const options = this.headerBuilder('', token);
+    console.log(options);
+    return this.http.get(url, options);
   }
 }
