@@ -31,14 +31,26 @@ export class ApiHelperService {
     const options = this.headerBuilder();
     const body = JSON.stringify(data);
     console.log (body);
-    return this.http.post(url,body,options);
+    this.http.post(url,body,options).subscribe(
+      (res) => {
+            console.log(res.json());
+            return res.json();
+          }
+        , (err) => console.log(err.json())
+    );
   }
 
   signup: any = (data) => {
     const url = this.baseUrl + 'users/';
-    const options = this.headerBuilder;
+    const options = this.headerBuilder();
     const body = JSON.stringify(data);
     console.log (body);
-    return this.http.post(url, body, options);
+    this.http.post(url, body, options).subscribe(
+      (res) => {
+            console.log(res.json());
+            return res.json();
+          }
+        , (err) => console.log(err.json())
+    );
   }
 }
