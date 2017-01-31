@@ -56,7 +56,7 @@ export class ApiHelperService {
     return this.http.put(url, body, options);
   }
 
-  getSpecificUser: any = (id: any, token: any) => {
+  getUser: any = (id: any, token: any) => {
     const url = this.baseUrl + 'users/' + id;
     const options = this.headerBuilder('', token);
     console.log(options);
@@ -68,5 +68,12 @@ export class ApiHelperService {
     const options = this.headerBuilder('',token);
     console.log(options);
     return this.http.get(url, options);
+  }
+
+  getCurrentUser: any = (token: any) => {
+    const url = this.baseUrl + 'users/user/';
+    const options = this.headerBuilder('',token);
+    console.log(options);
+    return this.http.get(url,options);
   }
 }
