@@ -14,7 +14,7 @@ export class ApiHelperService {
   private headerBuilder: any = (contentType?, token?) => {
     this.headers = new Headers({});
     this.options = new RequestOptions({ headers: this.headers });
-     if (contentType) {
+    if (contentType) {
       this.headers.append('Content-type', contentType);
     } else {
       this.headers.append('Content-type', 'application/json')
@@ -26,31 +26,25 @@ export class ApiHelperService {
     return this.options;
   }
 
+  checkName: any = (username: any) =>  {
+    const url = this.baseUrl + 'users/username/' + username;
+    const options = this.headerBuilder();
+    return this.http.get(url, options);
+  }
+
   login: any = (data) => {
     const url = this.baseUrl + 'login/';
     const options = this.headerBuilder();
     const body = JSON.stringify(data);
-    console.log (body);
-    this.http.post(url,body,options).subscribe(
-      (res) => {
-            console.log(res.json());
-            return res.json();
-          }
-        , (err) => console.log(err.json())
-    );
+    console.log(body);
+    return this.http.post(url, body, options);
   }
 
   signup: any = (data) => {
     const url = this.baseUrl + 'users/';
     const options = this.headerBuilder();
     const body = JSON.stringify(data);
-    console.log (body);
-    this.http.post(url, body, options).subscribe(
-      (res) => {
-            console.log(res.json());
-            return res.json();
-          }
-        , (err) => console.log(err.json())
-    );
+    console.log(body);
+    return this.http.post(url, body, options);
   }
 }
