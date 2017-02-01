@@ -35,7 +35,7 @@ export class AppComponent implements OnInit {
 
   test() {
     console.log('On the test function:');
-    this.apiHelperService.getMedia(10, 30).subscribe(
+    this.apiHelperService.getUserMedia(this.localStorageService.get('token')).subscribe(
       resp => console.log(resp.json())
     );
   }

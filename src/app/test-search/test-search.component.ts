@@ -19,7 +19,7 @@ export class TestSearchComponent implements OnInit {
   private localStorageService: LocalStorageService) { }
 
   search = (event, value) => {
-    this.apiHelperService.search(value, this.localStorageService.get('token')).subscribe(
+    this.apiHelperService.updateFile(value, 48, this.localStorageService.get('token')).subscribe(
       (res) => { console.log(res.json()); },
       (err) => { console.log(err.json()); }
     );

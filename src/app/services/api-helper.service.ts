@@ -139,6 +139,14 @@ export class ApiHelperService {
     return this.http.post(url, body, options);
   }
 
+  updateFile: any = (data: any, id: any, token: any) => {
+    const url = this.baseUrl + '/media/' + id;
+    const options = this.headerBuilder('', token);
+    const body = JSON.stringify(data);
+    console.log(body);
+    return this.http.put(url, body, options);
+  }
+
   uploadFile: any = (data, token: any) => {
     const url = this.baseUrl + 'media/';
     const body = data;
