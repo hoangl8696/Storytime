@@ -1,0 +1,5 @@
+<form novalidate [formGroup]="searchForm" (ngSubmit)="search($event, searchForm.value)">
+  <input formControlName="title" type="text" placeholder="Title search string">
+  <input formControlName="description" type="text" placeholder="Description search string">
+  <button type="submit">Search</button>
+</form>

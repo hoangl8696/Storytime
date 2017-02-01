@@ -23,7 +23,7 @@ export class ApiHelperService {
     this.headers = new Headers({});
     this.options = new RequestOptions({ headers: this.headers });
     if (contentType) {
-      this.headers.append('Content-type', contentType);
+      if (contentType !== 'auto-generated') { this.headers.append('Content-type', contentType); }
     } else {
       this.headers.append('Content-type', 'application/json');
     }
@@ -129,6 +129,21 @@ export class ApiHelperService {
     options.search = params;
     console.log(options);
     return this.http.get(url, options);
+  }
+
+  search: any = (data: any, token: any) => {
+    const url = this.baseUrl + '/media/search';
+    const options = this.headerBuilder('', token);
+    const body = JSON.stringify(data);
+    console.log(body);
+    return this.http.post(url, body, options);
+  }
+
+  uploadFile: any = (data, token: any) => {
+    const url = this.baseUrl + 'media/';
+    const body = data;
+    const options = this.headerBuilder('auto-generated', token);
+    return this.http.post(url, body, options);
   }
 
 }

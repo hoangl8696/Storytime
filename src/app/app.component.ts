@@ -1,5 +1,7 @@
+import { LocalStorageModule } from 'angular-2-local-storage';
 
 import { ApiHelperService } from './services/api-helper.service';
+import { LocalStorageService } from 'angular-2-local-storage';
 import { Component, OnInit } from '@angular/core';
 
 
@@ -14,7 +16,7 @@ export class AppComponent implements OnInit {
   private user: any;
   private token: any;
 
-  constructor(private apiHelperService: ApiHelperService) {}
+  constructor(private apiHelperService: ApiHelperService, private localStorageService: LocalStorageService) {}
 
   ngOnInit() {
     this.apiHelperService.login({
@@ -26,7 +28,7 @@ export class AppComponent implements OnInit {
         const json = resp.json();
         console.log(json.user);
         this.user = json.user;
-        this.token = json.token;
+        this.localStorageService.set('token', json.token);
       }
     );
   }
