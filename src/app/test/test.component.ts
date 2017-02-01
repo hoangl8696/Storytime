@@ -9,10 +9,10 @@ import { FormBuilder, Validators } from '@angular/forms'
 })
 export class TestComponent implements OnInit {
 
-  public signupForm = this.formBuilder.group({
-    username: [''],
-    password: [''],
-    email: ['']
+  public uploadForm = this.formBuilder.group({
+    file: [''],
+    title: [''],
+    description: ['']
   });
 
   constructor(private apiHelper: ApiHelperService, public formBuilder: FormBuilder) { }
@@ -21,12 +21,17 @@ export class TestComponent implements OnInit {
   ngOnInit() {
   }
 
-  signup = (event) => {
-    this.apiHelper.getCurrentUser( 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo2OSwidXNlcm5hbWUiOiJ3ZWciLCJlbWFpbCI6IndlZ0BnbWFpbC5jb20iLCJmdWxsX25hbWUiOm51bGwsImlzX2FkbWluIjpudWxsLCJ0aW1lX2NyZWF0ZWQiOiIyMDE3LTAxLTMwVDEzOjE0OjU1LjAwMFoiLCJpYXQiOjE0ODU4OTIzMjgsImV4cCI6MTQ4NTk3ODcyOH0.VyXEk_HyC_aW19bZJYmJoEpxzuOQvx6jNLFf9LqLVTE').subscribe(
-      (res) => {
-            console.log(res.json());
-          }
-        , (err) => console.log(err.json())
-    );
+  upload = (event) => {
+    // how to use api-helper to upload file
+    // let form = new FormData();
+    // form.append('file', event.target.querySelector('input[type=file]').files[0])
+    // form.append('title', this.uploadForm.controls['title']);
+    // form.append('description', this.uploadForm.value.description);
+    // this.apiHelper.uploadFile(form, 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxNDAsInVzZXJuYW1lIjoiam9obiIsImVtYWlsIjoiam9obkBleGFtcGxlLmNvbSIsImZ1bGxfbmFtZSI6bnVsbCwiaXNfYWRtaW4iOm51bGwsInRpbWVfY3JlYXRlZCI6IjIwMTctMDEtMzFUMTE6MTA6MDMuMDAwWiIsImlhdCI6MTQ4NTk0ODczOCwiZXhwIjoxNDg2MDM1MTM4fQ.Bchxd7zPFPtOxIC1bFdJ2b9eobaxXkBI9hHkGH_0Juc').subscribe(
+    //   (res) => {
+    //     console.log(res.json());
+    //   }
+    //   , (err) => console.log(err.json())
+    // );
   }
 }

@@ -15,7 +15,7 @@ export class ApiHelperService {
     this.headers = new Headers({});
     this.options = new RequestOptions({ headers: this.headers });
     if (contentType) {
-      this.headers.append('Content-type', contentType);
+      if (contentType !== 'auto-generated') { this.headers.append('Content-type', contentType); } else { }
     } else {
       this.headers.append('Content-type', 'application/json')
     }
@@ -65,15 +65,22 @@ export class ApiHelperService {
 
   getAllUsers: any = (token: any) => {
     const url = this.baseUrl + 'users/';
-    const options = this.headerBuilder('',token);
+    const options = this.headerBuilder('', token);
     console.log(options);
     return this.http.get(url, options);
   }
 
   getCurrentUser: any = (token: any) => {
     const url = this.baseUrl + 'users/user/';
-    const options = this.headerBuilder('',token);
+    const options = this.headerBuilder('', token);
     console.log(options);
-    return this.http.get(url,options);
+    return this.http.get(url, options);
+  }
+
+  uploadFile: any = (data, token: any) => {
+    const url = this.baseUrl + 'media/';
+    const body = data;
+    const options = this.headerBuilder('auto-generated', token);
+    return this.http.post(url, body, options);
   }
 }

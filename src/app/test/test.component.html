@@ -1,6 +1,6 @@
-<form [formGroup]="signupForm" (ngSubmit)="signup($event)">
-    <input formControlName="username" type="text" placeholder="Your username">
-    <input formControlName="password" type="password" placeholder="Your password">
-    <input formControlName="email" type="email" placeholder="Your email">
-  <button type="submit">signup</button>
+<form [formGroup]="uploadForm" (ngSubmit)="upload($event)">
+  <input formControlName="file" type="file" placeholder="Choose file">
+  <input formControlName="title" type="text" placeholder="Your title">
+  <input formControlName="description" type="text" placeholder="Your description">
+  <button type="submit">upload</button>
 </form>
