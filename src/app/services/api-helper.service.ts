@@ -147,8 +147,8 @@ export class ApiHelperService {
     return this.http.put(url, body, options);
   }
 
-  uploadFile: any = (data, token: any) => {
-    const url = this.baseUrl + 'media/';
+  uploadFile: any = (data: any, token: any) => {
+    const url = this.baseUrl + '/media';
     const body = data;
     const options = this.headerBuilder('auto-generated', token);
     return this.http.post(url, body, options);
