@@ -32,11 +32,10 @@ export class AppComponent implements OnInit {
   }
 
   test() {
-    /*console.log('On the test function:');
-    this.apiHelperService.getUserMedia(this.token).subscribe(
+    console.log('On the test function:');
+    this.apiHelperService.getMedia(10, 30).subscribe(
       resp => console.log(resp.json())
-    );*/
-    this.apiHelperService.getMedia(10, 30);
+    );
   }
 
 }

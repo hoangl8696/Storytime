@@ -1,5 +1,5 @@
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
-import { Headers, Http, RequestOptions } from '@angular/http';
+import { Headers, Http, RequestOptions, URLSearchParams } from '@angular/http';
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
 
@@ -121,51 +121,14 @@ export class ApiHelperService {
   }
 
   getMedia: any = (start?, limit?) => {
-    const params = {};
-    if (start) { params['start'] = start; }
-    if (limit) { params['limit'] = limit; }
-    console.log(
-      //this.urlBuilder(['media'], params)
-    );
+    const url = this.baseUrl + '/media';
+    const options = this.headerBuilder();
+    const params: URLSearchParams = new URLSearchParams;
+    if (start) { params.set('start', start); }
+    if (limit) { params.set('limit', limit); }
+    options.search = params;
+    console.log(options);
+    return this.http.get(url, options);
   }
-
-
-
-
-
-
-
- /* urlBuilder: any = (pathArray?, paramsArray?) => {
-    let url = this.baseUrl;
-    let filePath = '';
-    let query = '';
-    if (pathArray) {
-      for (const x of pathArray) {
-        filePath += '/' + x;
-      }
-      url += filePath;
-    }
-    if (paramsArray) {
-      query = $httpParamSerializer(paramsArray);
-      /*
-      for (const param of paramsArray) {
-        if (paramsArray.indexOf(param) === 0) {
-          query += '?' + param.key + '=' + param.value;
-        } else {
-          query += '&' + param.key + '=' + param.value;
-        }
-      }
-      url += query;
-    }
-
-    return url;
-  }*/
-
-
-
-
-
-
-
 
 }
