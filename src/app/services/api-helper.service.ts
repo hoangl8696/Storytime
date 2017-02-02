@@ -30,21 +30,23 @@ export class ApiHelperService {
     return this.options;
   }
 
+  /* OTHER */
   checkName: any = (username: any) => {
-    const url = this.baseUrl + 'users/username/' + username;
+    const url = this.baseUrl + '/users/username/' + username;
     const options = this.headerBuilder();
     return this.http.get(url, options);
   }
 
   login: any = (data) => {
-    const url = this.baseUrl + 'login/';
+    const url = this.baseUrl + '/login/';
     const options = this.headerBuilder();
     const body = JSON.stringify(data);
+    console.log(options);
     console.log(body);
     return this.http.post(url, body, options);
   }
 
-/* USER */
+  /* USER */
   signup: any = (data) => {
     const url = this.baseUrl + '/users/';
     const options = this.headerBuilder();
@@ -54,7 +56,7 @@ export class ApiHelperService {
   }
 
   modifyUser: any = (data, token: any) => {
-    const url = this.baseUrl + 'users/';
+    const url = this.baseUrl + '/users/';
     const options = this.headerBuilder('', token);
     const body = JSON.stringify(data);
     console.log(body);
@@ -62,26 +64,25 @@ export class ApiHelperService {
   }
 
   getUser: any = (id: any, token: any) => {
-    const url = this.baseUrl + 'users/' + id;
+    const url = this.baseUrl + '/users/' + id;
     const options = this.headerBuilder('', token);
     console.log(options);
     return this.http.get(url, options);
   }
 
   getAllUsers: any = (token: any) => {
-    const url = this.baseUrl + 'users/';
+    const url = this.baseUrl + '/users/';
     const options = this.headerBuilder('', token);
     console.log(options);
     return this.http.get(url, options);
   }
 
   getCurrentUser: any = (token: any) => {
-    const url = this.baseUrl + 'users/user/';
+    const url = this.baseUrl + '/users/user/';
     const options = this.headerBuilder('', token);
     console.log(options);
     return this.http.get(url, options);
   }
-
 
   /* MEDIA */
   getFile: any = (id: any) => {
@@ -151,5 +152,11 @@ export class ApiHelperService {
     return this.http.post(url, body, options);
   }
 
+  /* COMMENT */
+  deleteComment = (id: any, token: any) => {
+    const url = this.baseUrl + '/comments/' + id;
+    const options = this.headerBuilder('auto-generated', token);
+    return this.http.delete(url, options);
+  }
 
 }
