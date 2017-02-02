@@ -86,7 +86,7 @@ export class ApiHelperService {
     return this.http.get(url, options);
   }
 
-  /* MEDIA */
+/* MEDIA */
   getFile: any = (id: any) => {
     const url = this.baseUrl + '/media/' + id;
     const options = this.headerBuilder();
@@ -152,6 +152,23 @@ export class ApiHelperService {
     const body = data;
     const options = this.headerBuilder('auto-generated', token);
     return this.http.post(url, body, options);
+  }
+
+
+/* FAVOURITE */
+  favourite: any = (data: any, token: any) => {
+    const url = this.baseUrl + '/favourites';
+    const options = this.headerBuilder('', token);
+    const body = JSON.stringify(data);
+    console.log(options, body);
+    return this.http.post(url, body, options);
+  }
+
+  deleteFavourite: any = (id: any, token: any) => {
+    const url = this.baseUrl + '/favourites/file/' + id;
+    const options = this.headerBuilder('', token);
+    console.log(options);
+    return this.http.delete(url, options);
   }
 
 }

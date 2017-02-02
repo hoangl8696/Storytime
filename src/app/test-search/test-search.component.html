@@ -1,12 +1,17 @@
-<!--<form novalidate [formGroup]="searchForm" (ngSubmit)="search($event, searchForm.value)">
+<form novalidate [formGroup]="searchForm" (ngSubmit)="search($event, searchForm.value)">
   <input formControlName="title" type="text" placeholder="Title string">
   <input formControlName="description" type="text" placeholder="Description string">
   <button type="submit">Update</button>
-</form>-->
+</form>
 <br>
 <form novalidate [formGroup]="uploadForm" (ngSubmit)="upload($event, uploadForm.value)">
   <input formControlName="file" type="file"><br>
   <input formControlName="title" type="text" placeholder="Title string"><br>
   <input formControlName="description" type="text" placeholder="Description string"><br>
   <button type="submit">Upload</button>
+</form>
+<br>
+<form novalidate [formGroup]="favouriteForm" (ngSubmit)="favourite(favouriteForm.value)">
+  <input formControlName="file_id" type="number" placeholder="Media id">
+  <button type="submit">Favourite</button>
 </form>

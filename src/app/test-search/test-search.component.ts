@@ -21,6 +21,10 @@ export class TestSearchComponent implements OnInit {
     description: ['']
   });
 
+  public favouriteForm = this.formBuilder.group({
+    file_id: []
+  });
+
   constructor(private apiHelperService: ApiHelperService, public formBuilder: FormBuilder,
   private localStorageService: LocalStorageService) { }
 
@@ -43,6 +47,14 @@ export class TestSearchComponent implements OnInit {
     this.apiHelperService.uploadFile(form, this.localStorageService.get('token')).subscribe(
       (res) => { console.log(res.json()); },
       (err) => { console.log(err.json()); }
+    );
+  }
+
+  favourite = (value) => {
+    console.log(value, this.localStorageService.get('token'));
+    this.apiHelperService.favourite(value, this.localStorageService.get('token')).subscribe(
+      (res) => { console.log(res); },
+      (err) => { console.log(err); }
     );
   }
 
