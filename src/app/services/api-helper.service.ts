@@ -152,14 +152,14 @@ export class ApiHelperService {
     return this.http.post(url, body, options);
   }
 
-/* COMMENT */
+  /* COMMENT */
   deleteComment = (id: any, token: any) => {
     const url = this.baseUrl + '/comments/' + id;
     const options = this.headerBuilder('auto-generated', token);
     return this.http.delete(url, options);
   }
 
-  //Still broken
+  // Still broken with preflight
   // postComment = (data, token: any) => {
   //   const url = this.baseUrl + '/comments';
   //   const body = JSON.stringify(data);
@@ -171,16 +171,32 @@ export class ApiHelperService {
 
   getCommentsOfFile = (id: number) => {
     const url = this.baseUrl + '/comments/file/' + id;
-    return this.http.get (url);
+    return this.http.get(url);
   }
 
-  getCommentsOfUser = (token: any) => {
-    const url = this.baseUrl + '/comments';
-    const options = this.headerBuilder('', token);
-    console.log(JSON.stringify(options));
-    return this.http.get (url, options);
+  // Still broken with preflight
+  // getCommentsOfUser = (token: any) => {
+  //   const url = this.baseUrl + '/comments';
+  //   const options = this.headerBuilder('', token);
+  //   console.log(JSON.stringify(options));
+  //   return this.http.get(url, options);
+  // }
+
+  /* RATING */
+
+  // Still broken with preflight
+  // rate = (data, token: any) => {
+  //   const url = this.baseUrl + '/ratings';
+  //   const body = JSON.stringify(data);
+  //   const options = this.headerBuilder('', token);
+  //   console.log(body);
+  //   console.log(JSON.stringify(options));
+  //   return this.http.post(url, body, options);
+  // }
+
+  deleteRating=(id:any,token:any)=>{
+    const url = this.baseUrl+'/ratings/file/'+id;
+    const options = this.headerBuilder('',token);
+    return this.http.delete(url,options);
   }
-
-
-
 }
