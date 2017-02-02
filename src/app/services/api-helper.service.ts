@@ -20,9 +20,9 @@ export class ApiHelperService {
     this.headers = new Headers({});
     this.options = new RequestOptions({ headers: this.headers });
     if (contentType) {
-      if (contentType !== 'auto-generated') { this.headers.append('Content-type', contentType); } else { }
+      if (contentType !== 'auto-generated') { this.headers.append('Content-Type', contentType); } else { }
     } else {
-      this.headers.append('Content-type', 'application/json')
+      this.headers.append('Content-Type', 'application/json')
     }
     if (token) {
       this.headers.append('x-access-token', token);
@@ -152,11 +152,35 @@ export class ApiHelperService {
     return this.http.post(url, body, options);
   }
 
-  /* COMMENT */
+/* COMMENT */
   deleteComment = (id: any, token: any) => {
     const url = this.baseUrl + '/comments/' + id;
     const options = this.headerBuilder('auto-generated', token);
     return this.http.delete(url, options);
   }
+
+  //Still broken
+  // postComment = (data, token: any) => {
+  //   const url = this.baseUrl + '/comments';
+  //   const body = JSON.stringify(data);
+  //   const options = this.headerBuilder('', token);
+  //   console.log(body);
+  //   console.log(JSON.stringify(options));
+  //   return this.http.post(url, body, options);
+  // }
+
+  getCommentsOfFile = (id: number) => {
+    const url = this.baseUrl + '/comments/file/' + id;
+    return this.http.get (url);
+  }
+
+  getCommentsOfUser = (token: any) => {
+    const url = this.baseUrl + '/comments';
+    const options = this.headerBuilder('', token);
+    console.log(JSON.stringify(options));
+    return this.http.get (url, options);
+  }
+
+
 
 }
