@@ -19,7 +19,6 @@ export class ApiHelperService {
     } else {
       this.headers.append('Content-type', 'application/json')
     }
-
     if (token) {
       this.headers.append('x-access-token', token);
     }
