@@ -194,9 +194,50 @@ export class ApiHelperService {
   //   return this.http.post(url, body, options);
   // }
 
-  deleteRating=(id:any,token:any)=>{
-    const url = this.baseUrl+'/ratings/file/'+id;
-    const options = this.headerBuilder('',token);
-    return this.http.delete(url,options);
+  deleteRating = (id: any, token: any) => {
+    const url = this.baseUrl + '/ratings/file/' + id;
+    const options = this.headerBuilder('', token);
+    return this.http.delete(url, options);
   }
+
+  getRatingOfFile = (id: any, token: any) => {
+    const url = this.baseUrl + '/ratings/file/' + id;
+    const options = this.headerBuilder('', token);
+    return this.http.get(url, options);
+  }
+
+  // Still broken with preflight
+  // getRatingOfUser = (token: any) => {
+  //   const url = this.baseUrl + '/ratings';
+  //   const options = this.headerBuilder('', token);
+  //   return this.http.get(url, options);
+  // }
+
+  /* TAG */
+
+  // Still broken with preflight
+  // tag = (data, token: any) => {
+  //   const url = this.baseUrl + '/tags';
+  //   const body = JSON.stringify(data);
+  //   const options = this.headerBuilder('', token);
+  //   return this.http.post(url, body, options);
+  // }
+
+  getFilesByTag = (tag: any) => {
+    const tagSafe = encodeURI(tag);
+    const url = this.baseUrl + '/tags/' + tagSafe;
+    return this.http.get(url);
+  }
+
+  getTagsByFile = (id: any) => {
+    const url = this.baseUrl + '/tags/file/' + id;
+    return this.http.get(url);
+  }
+
+  // Still broken with preflight
+  // getTagsByUser = (token: any) => {
+  //   const url = this.baseUrl + '/tags';
+  //   const options = this.headerBuilder ('',token);
+  //   return this.http.get(url,options);
+  // }
 }
