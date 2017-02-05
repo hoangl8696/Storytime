@@ -43,7 +43,7 @@ export class AppComponent implements OnInit {
       (resp) => console.log(resp.json()),
       (err) => console.log(err.json())
     );*/
-    this.apiHelperService.requestFavourites(this.localStorageService.get('token'))
+    this.apiHelperService.requestAllAndCount()
     .subscribe(
       (resp) => console.log(resp.json()),
       (err) => console.log(err.json())
