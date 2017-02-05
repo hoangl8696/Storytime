@@ -29,6 +29,7 @@ export class AppComponent implements OnInit {
         console.log(json.user);
         this.user = json.user;
         this.localStorageService.set('token', json.token);
+        console.log(json.token);
       }
     );
   }
@@ -38,7 +39,13 @@ export class AppComponent implements OnInit {
     this.apiHelperService.getMedia().subscribe(
       resp => console.log(resp.json())
     );
-    this.apiHelperService.deleteFavourite(24, this.localStorageService.get('token')).subscribe(
+    this.apiHelperService.getUserMedia(this.localStorageService.get('token')).subscribe(
+      (resp) => console.log(resp.json()),
+      (err) => console.log(err.json())
+    );
+    this.apiHelperService.requestFavouritesById(79,
+    this.localStorageService.get('token'))
+    .subscribe(
       (resp) => console.log(resp.json()),
       (err) => console.log(err.json())
     );

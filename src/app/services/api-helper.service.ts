@@ -171,4 +171,11 @@ export class ApiHelperService {
     return this.http.delete(url, options);
   }
 
+  requestFavouritesById: any = (id: any, token: any) => {
+    const url = this.baseUrl + '/favourites/file/' + id;
+    const options = this.headerBuilder('', token);
+    console.log(options);
+    return this.http.get(url, options);
+  }
+
 }
