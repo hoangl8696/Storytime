@@ -36,15 +36,14 @@ export class AppComponent implements OnInit {
 
   test() {
     console.log('On the test function:');
-    this.apiHelperService.getMedia().subscribe(
+    /*this.apiHelperService.getMedia().subscribe(
       resp => console.log(resp.json())
-    );
-    this.apiHelperService.getUserMedia(this.localStorageService.get('token')).subscribe(
+    );*/
+    /*this.apiHelperService.getUserMedia(this.localStorageService.get('token')).subscribe(
       (resp) => console.log(resp.json()),
       (err) => console.log(err.json())
-    );
-    this.apiHelperService.requestFavouritesById(79,
-    this.localStorageService.get('token'))
+    );*/
+    this.apiHelperService.requestFavourites(this.localStorageService.get('token'))
     .subscribe(
       (resp) => console.log(resp.json()),
       (err) => console.log(err.json())

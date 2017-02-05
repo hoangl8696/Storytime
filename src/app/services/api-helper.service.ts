@@ -178,4 +178,11 @@ export class ApiHelperService {
     return this.http.get(url, options);
   }
 
+  requestFavourites: any = (token: any) => {
+    const url = this.baseUrl + '/favourites';
+    const options = this.headerBuilder('', token);
+    console.log(options);
+    return this.http.get(url, options);
+  }
+
 }
