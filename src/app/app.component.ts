@@ -39,7 +39,8 @@ export class AppComponent implements OnInit {
     /*this.apiHelperService.getMedia().subscribe(
       resp => console.log(resp.json())
     );*/
-    this.apiHelperService.requestFavourites(this.localStorageService.get('token')).subscribe(
+    this.apiHelperService.getTagsByUser(
+    this.localStorageService.get('token')).subscribe(
       (resp) => console.log('favourites: ', resp.json()),
       (err) => console.log(err.json())
     );
