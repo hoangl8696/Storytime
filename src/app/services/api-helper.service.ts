@@ -274,8 +274,8 @@ export class ApiHelperService {
 
   getTagsByUser = (token: any) => {
     const url = this.baseUrl + '/tags';
-    const options = this.headerBuilder ('',token);
-    return this.http.get(url,options);
+    const options = this.headerBuilder ('', token);
+    return this.http.get(url, options);
   }
 
 }
