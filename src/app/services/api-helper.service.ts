@@ -30,7 +30,7 @@ export class ApiHelperService {
     return this.options;
   }
 
-  /* OTHER */
+  /* OTHER 2*/
   checkName: any = (username: any) => {
     const url = this.baseUrl + '/users/username/' + username;
     const options = this.headerBuilder();
@@ -46,7 +46,7 @@ export class ApiHelperService {
     return this.http.post(url, body, options);
   }
 
-  /* USER */
+  /* USER 5*/
   signup: any = (data) => {
     const url = this.baseUrl + '/users/';
     const options = this.headerBuilder();
@@ -84,7 +84,7 @@ export class ApiHelperService {
     return this.http.get(url, options);
   }
 
-  /* MEDIA */
+  /* MEDIA 9*/
   getFile: any = (id: any) => {
     const url = this.baseUrl + '/media/' + id;
     const options = this.headerBuilder();
@@ -97,6 +97,13 @@ export class ApiHelperService {
     const options = this.headerBuilder('', token);
     console.log(options);
     return this.http.delete(url, options);
+  }
+
+  requestAllAndCount: any = () => {
+    const url = this.baseUrl + '/media/all';
+    const options = this.headerBuilder();
+    console.log(options);
+    return this.http.get(url, options);
   }
 
   getUserMediaById: any = (id: any, token?) => {
@@ -152,47 +159,73 @@ export class ApiHelperService {
     return this.http.post(url, body, options);
   }
 
-  /* COMMENT */
+  /* FAVOURITE 4*/
+  favourite: any = (data: any, token: any) => {
+    const url = this.baseUrl + '/favourites';
+    const options = this.headerBuilder('', token);
+    const body = JSON.stringify(data);
+    console.log(options, body);
+    return this.http.post(url, body, options);
+  }
+
+  deleteFavourite: any = (id: any, token: any) => {
+    const url = this.baseUrl + '/favourites/file/' + id;
+    const options = this.headerBuilder('', token);
+    console.log(options);
+    return this.http.delete(url, options);
+  }
+
+  requestFavouritesById: any = (id: any, token: any) => {
+    const url = this.baseUrl + '/favourites/file/' + id;
+    const options = this.headerBuilder('', token);
+    console.log(options);
+    return this.http.get(url, options);
+  }
+
+  requestFavourites: any = (token: any) => {
+    const url = this.baseUrl + '/favourites';
+    const options = this.headerBuilder('', token);
+    console.log(options);
+    return this.http.get(url, options);
+  }
+
+  /* COMMENT 4*/
   deleteComment = (id: any, token: any) => {
     const url = this.baseUrl + '/comments/' + id;
     const options = this.headerBuilder('auto-generated', token);
     return this.http.delete(url, options);
   }
 
-  // Still broken with preflight
-  // postComment = (data, token: any) => {
-  //   const url = this.baseUrl + '/comments';
-  //   const body = JSON.stringify(data);
-  //   const options = this.headerBuilder('', token);
-  //   console.log(body);
-  //   console.log(JSON.stringify(options));
-  //   return this.http.post(url, body, options);
-  // }
+  postComment = (data, token: any) => {
+    const url = this.baseUrl + '/comments';
+    const body = JSON.stringify(data);
+    const options = this.headerBuilder('', token);
+    console.log(body);
+    console.log(JSON.stringify(options));
+    return this.http.post(url, body, options);
+  }
 
   getCommentsOfFile = (id: number) => {
     const url = this.baseUrl + '/comments/file/' + id;
     return this.http.get(url);
   }
 
-  // Still broken with preflight
-  // getCommentsOfUser = (token: any) => {
-  //   const url = this.baseUrl + '/comments';
-  //   const options = this.headerBuilder('', token);
-  //   console.log(JSON.stringify(options));
-  //   return this.http.get(url, options);
-  // }
+  getCommentsOfUser = (token: any) => {
+    const url = this.baseUrl + '/comments';
+    const options = this.headerBuilder('', token);
+    console.log(JSON.stringify(options));
+    return this.http.get(url, options);
+  }
 
-  /* RATING */
-
-  // Still broken with preflight
-  // rate = (data, token: any) => {
-  //   const url = this.baseUrl + '/ratings';
-  //   const body = JSON.stringify(data);
-  //   const options = this.headerBuilder('', token);
-  //   console.log(body);
-  //   console.log(JSON.stringify(options));
-  //   return this.http.post(url, body, options);
-  // }
+  /* RATING 4*/
+  rate = (data, token: any) => {
+    const url = this.baseUrl + '/ratings';
+    const body = JSON.stringify(data);
+    const options = this.headerBuilder('', token);
+    console.log(body);
+    console.log(JSON.stringify(options));
+    return this.http.post(url, body, options);
+  }
 
   deleteRating = (id: any, token: any) => {
     const url = this.baseUrl + '/ratings/file/' + id;
@@ -206,22 +239,19 @@ export class ApiHelperService {
     return this.http.get(url, options);
   }
 
-  // Still broken with preflight
-  // getRatingOfUser = (token: any) => {
-  //   const url = this.baseUrl + '/ratings';
-  //   const options = this.headerBuilder('', token);
-  //   return this.http.get(url, options);
-  // }
+  getRatingOfUser = (token: any) => {
+    const url = this.baseUrl + '/ratings';
+    const options = this.headerBuilder('', token);
+    return this.http.get(url, options);
+  }
 
-  /* TAG */
-
-  // Still broken with preflight
-  // tag = (data, token: any) => {
-  //   const url = this.baseUrl + '/tags';
-  //   const body = JSON.stringify(data);
-  //   const options = this.headerBuilder('', token);
-  //   return this.http.post(url, body, options);
-  // }
+  /* TAG 4*/
+  tag = (data, token: any) => {
+    const url = this.baseUrl + '/tags';
+    const body = JSON.stringify(data);
+    const options = this.headerBuilder('', token);
+    return this.http.post(url, body, options);
+  }
 
   getFilesByTag = (tag: any) => {
     const tagSafe = encodeURI(tag);
@@ -234,10 +264,9 @@ export class ApiHelperService {
     return this.http.get(url);
   }
 
-  // Still broken with preflight
-  // getTagsByUser = (token: any) => {
-  //   const url = this.baseUrl + '/tags';
-  //   const options = this.headerBuilder ('',token);
-  //   return this.http.get(url,options);
-  // }
+  getTagsByUser = (token: any) => {
+    const url = this.baseUrl + '/tags';
+    const options = this.headerBuilder ('',token);
+    return this.http.get(url,options);
+  }
 }
